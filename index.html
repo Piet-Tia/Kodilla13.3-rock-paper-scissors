@@ -5,35 +5,33 @@
   <meta charset="UTF-8">
   <title>Kodilla 8.4. Rock paper scissors</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css'>
-
-      <link rel="stylesheet" href="css/style.css">
-
-  
+  <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-
-  <button class="btn btn-info" id="new-game-button">New Game</button><br>
-<button class="game_button" id="rock">Rock</button>
-<button class="game_button" id="paper">Paper</button>
-<button class="game_button" id="scissors">Scissors</button>
-<div>
-  <span id="game_length"></span>
-  <span id="player_score">0</span>
-  :
-  <span id="computer_score">0</span>
-</div>
-<div id="output">Please press the New Game button.</div>
-  
-  
-
-    <script  src="js/index.js"></script>
-
-
-
-
+  <div class="container">
+    <button class="btn btn-info" id="new-game-button">New Game</button><br>
+    <button class="game_button player-move" id="rock" data-move="rock">Rock</button>
+    <button class="game_button player-move" id="paper" data-move="paper">Paper</button>
+    <button class="game_button player-move" id="scissors" data-move="scissors">Scissors</button>
+    <div>
+      <span id="game_length_info"></span>
+      <span id="player_score">0</span> : <span id="computer_score">0</span>
+    </div>
+    <div id="output">Please press the New Game button.</div>
+      
+      
+    <div class="overlay" id="modal-overlay">
+      <div class="modal">
+        <a href="#" class="close">x</a>
+        <header>Lorem ipsum</header>
+        <div class="content">
+          <p>Dolor sit amet!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+<script  src="js/index.js"></script>
 </body>
 
 </html>
