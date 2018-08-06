@@ -5,8 +5,15 @@ var DOM = {
   playerScore: document.getElementById("player_score"),
   computerScore: document.getElementById("computer_score"),
   newGameButton: document.getElementById("new-game-button"),
+
+/* TU SIE ZACZYNAJA QUERY SELECTORY - CZY LEPIEJ PRZEROBIC NA TAK JAK WYZEJ ? */
+
   content: document.querySelector('.content'),
   gameSummary: document.querySelector('.game-summary'),
+  modalOverlay: document.querySelector('#modal-overlay'),
+  modalClass: document.querySelector('.modal'),
+  closeButtons: document.querySelectorAll('.modal .close'),
+
 }
 
 var params = {
@@ -148,36 +155,37 @@ function postResult() {
   }
 }
 
+function showModal(modalClass) {
+  DOM.modalOverlay.classList.add('show');
+  DOM.modalClass.classList.add('show');
+};
+
+function hideModal() {
+  DOM.modalOverlay.classList.remove('show');
+};
+
 for (x = 0; x < 3; x++) {
   DOM.gameButtons[x].disabled = true;
 }
 
 DOM.newGameButton.addEventListener("click", newGame);
 
-/*** NEW PART, TO BE CLEANED UP ***/
-
-
-
-function showModal(modalClass) {
-  document.querySelector('#modal-overlay').classList.add('show');
-  document.querySelector(modalClass).classList.add('show');
-
-};
-
-function hideModal() {
-  document.querySelector('#modal-overlay').classList.remove('show');
-};
-
-var closeButtons = document.querySelectorAll('.modal .close');
-
-for (var i = 0; i < closeButtons.length; i++) {
-  closeButtons[i].addEventListener('click', hideModal);
+for (var i = 0; i < DOM.closeButtons.length; i++) {
+  DOM.closeButtons[i].addEventListener('click', hideModal);
 }
+
+
 
 function insertGameStats() {
-  addText("gameSummary" , "<tr><th>No. of round</th><th>Move of Player</th><th>Move of Computer</th><th>Result of round</th><th>Score after round</th></tr>");
+  addText("gameSummary" , "Please find the game summary below:<br><tr><th>No. of round</th><th>Move of Player</th><th>Move of Computer</th><th>Result of round</th><th>Score after round</th></tr>");
   for (i=0 ; i<params.progress.length ; i++) {
     console.log (params.progress[i]['moveOfPlayer']);
-    addText("gameSummary" , "<tr><td>" + params.progress[i]['numberOfRound'] + "</td><td>" + params.progress[i]['moveOfPlayer'] + "</td></tr>");
+    addText("gameSummary" , "<tr><td>" + 
+    params.progress[i]['numberOfRound'] + "</td><td>" + 
+    params.progress[i]['moveOfPlayer'] + "</td><td>" + 
+    params.progress[i]['moveOfComputer'] + "</td><td>" +
+    params.progress[i]['resultOfRound'] + "</td><td>" +
+    params.progress[i]['scoreAfterRound'] + "</td></tr>");
   }
 }
+

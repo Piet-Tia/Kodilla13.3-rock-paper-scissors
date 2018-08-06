@@ -26,12 +26,15 @@ button {
 }
 
 .modal {
-	background: #fff;
+	background: #ccc;
 	width: 800px;
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate3d(-50%, -50%, 0);
+	padding: 10px;
+	border-radius: 5px;
+	
 	
 	&.show {
 		display: block;
@@ -58,11 +61,4 @@ button {
 		min-height: 30px;
 		padding: 5px 30px;
 	}
-}
-
-.game-summary__header-row > th {
-	border: 1px solid red;
-	width: 150px;
-	padding-left: 5px;
-	
 }
