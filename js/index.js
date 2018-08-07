@@ -108,6 +108,10 @@ function addText(location,text) {
   DOM[location].innerHTML += text + "<br>";
 }
 
+function addTextNoBreak(location,text) {
+  DOM[location].innerHTML += text;
+}
+
 function displayText(location,text) {
   DOM[location].innerHTML = text;
 }
@@ -177,10 +181,9 @@ for (var i = 0; i < DOM.closeButtons.length; i++) {
 
 
 function insertGameStats() {
-  addText("gameSummary" , "Please find the game summary below:<br><tr><th>No. of round</th><th>Move of Player</th><th>Move of Computer</th><th>Result of round</th><th>Score after round</th></tr>");
+  addTextNoBreak("gameSummary" , "<tr><th>No. of round</th><th>Move of Player</th><th>Move of Computer</th><th>Result of round</th><th>Score after round</th></tr>");
   for (i=0 ; i<params.progress.length ; i++) {
-    console.log (params.progress[i]['moveOfPlayer']);
-    addText("gameSummary" , "<tr><td>" + 
+    addTextNoBreak("gameSummary" , "<tr><td>" + 
     params.progress[i]['numberOfRound'] + "</td><td>" + 
     params.progress[i]['moveOfPlayer'] + "</td><td>" + 
     params.progress[i]['moveOfComputer'] + "</td><td>" +

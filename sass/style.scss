@@ -1,3 +1,5 @@
+@import "normalize";
+
 body {
   margin: 10px;
 }
@@ -54,11 +56,24 @@ button {
 		line-height: 30px;
 		min-height: 30px;
 		font-weight: bold;
-		padding: 0 30px;
+		padding: 10px;
 	}
 
 	.content {
 		min-height: 30px;
 		padding: 5px 30px;
 	}
+}
+
+
+.game-summary * {
+	border: 1px solid #555;
+}
+
+.game-summary th {
+	padding: 5px;	
+}
+
+.game-summary tr:hover td {
+	background: #aaa;
 }
