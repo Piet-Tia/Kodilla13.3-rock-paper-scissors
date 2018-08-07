@@ -71,6 +71,7 @@ Array.from(DOM.gameButtons).forEach(function (element) {
     let playerChoice = this.id == "rock" ? 0 : this.id == "paper" ? 1 : 2;
     let computerChoice = randomChoice();
     let roundResult;
+    addTextNoBreak("output" , "Round " + params.roundNumber + ": ");
     let whoWon = function () {
       if (playerChoice === computerChoice) {
         roundResult = "Tie."
@@ -156,7 +157,7 @@ function postResult() {
       (playerWon() ? "CONGRATULATIONS, YOU WON " : "YOUR OPPONENT WON ") +  params.gameLength + " ROUND" + (params.gameLength == 1 ? "" : "S") + ".</strong>"
     );
     setTimeout(function () {
-      addText("content", "<br>Please press the New Game button.");
+      addText("content", "<br>Please start a new game.");
     }, 1000);
   }
 }

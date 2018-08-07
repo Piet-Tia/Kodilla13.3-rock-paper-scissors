@@ -359,17 +359,19 @@ button {
 
 .modal {
   background: #ccc;
-  width: 800px;
+  width: 700px;
+  overflow-y: auto;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
-  padding: 10px;
   border-radius: 5px;
+  padding: 20px;
+  border: 3px solid green;
 }
 
 .modal.show {
-  display: block;
+  display: inline-block;
 }
 
 .modal .close {
@@ -386,12 +388,15 @@ button {
   line-height: 30px;
   min-height: 30px;
   font-weight: bold;
-  padding: 10px;
+  padding-bottom: 20px;
 }
 
 .modal .content {
-  min-height: 30px;
   padding: 5px 30px;
+}
+
+.modal * {
+  border: 2px solid red;
 }
 
 .game-summary * {
