@@ -371,7 +371,7 @@ button {
 }
 
 .modal.show {
-  display: inline-block;
+  display: block;
 }
 
 .modal .close {
@@ -385,7 +385,6 @@ button {
 
 .modal header {
   font-size: 20px;
-  line-height: 30px;
   min-height: 30px;
   font-weight: bold;
   padding-bottom: 20px;
