@@ -28,6 +28,8 @@ var params = {
 var choices = ["rock", "paper", "scissors"];
 
 
+/*** FUNCTIONS ***/
+
 function checkIfInputIsPositiveInteger(input){
   if (!isNaN(parseInt(input, 10)) && parseInt(input, 10) > 0) {
     return true;
@@ -82,7 +84,7 @@ Array.from(DOM.gameButtons).forEach(function (element) {
       else {
         params.playerScore++;
         roundResult = "Player won."
-        return "You won. You played " + choices[playerChoice] + ", the computer played " + choices[computerChoice];
+        return "You won. You played " + choices[playerChoice] + ", the computer played " + choices[computerChoice] + ".";
       }
     }
     addText("output", whoWon());
@@ -168,18 +170,6 @@ function hideModal() {
   DOM.modalOverlay.classList.remove('show');
 };
 
-for (x = 0; x < 3; x++) {
-  DOM.gameButtons[x].disabled = true;
-}
-
-DOM.newGameButton.addEventListener("click", newGame);
-
-for (var i = 0; i < DOM.closeButtons.length; i++) {
-  DOM.closeButtons[i].addEventListener('click', hideModal);
-}
-
-
-
 function insertGameStats() {
   addTextNoBreak("gameSummary" , "<tr><th>No. of round</th><th>Move of Player</th><th>Move of Computer</th><th>Result of round</th><th>Score after round</th></tr>");
   for (i=0 ; i<params.progress.length ; i++) {
@@ -191,4 +181,29 @@ function insertGameStats() {
     params.progress[i]['scoreAfterRound'] + "</td></tr>");
   }
 }
+
+
+/*** EVENTS ***/
+
+
+DOM.newGameButton.addEventListener("click", newGame);
+
+for (var i = 0; i < DOM.closeButtons.length; i++) {
+  DOM.closeButtons[i].addEventListener('click', hideModal);
+}
+
+DOM.modalOverlay.addEventListener('click', hideModal);
+
+DOM.modalClass.addEventListener('click', function(event){
+  event.stopPropagation();
+  });
+
+
+/*** OTHER ***/
+
+
+for (x = 0; x < 3; x++) {
+  DOM.gameButtons[x].disabled = true;
+}
+
 
