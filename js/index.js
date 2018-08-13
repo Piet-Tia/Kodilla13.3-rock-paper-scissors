@@ -16,6 +16,10 @@ var DOM = {
 
 }
 
+/* DODAWAC KLASY Z PRZEDROSTKIEM "JS-" NA POTRZEBY ODWOLYWANIA SIE DO NICH PRZEZ JS */
+
+
+/* change to: GAME.PARAMETERS */
 var params = {
   playerScore: 0,
   computerScore: 0,
@@ -34,15 +38,22 @@ function checkIfInputIsPositiveInteger(input){
   if (!isNaN(parseInt(input, 10)) && parseInt(input, 10) > 0) {
     return true;
   }
-  else {
-    return false;
-  } 
+
+/* NIEPOTRZEBNY ELSE !!! */
+
+//  else { 
+//    return false; 
+//  } 
+return false;
 }
+
+
+
 
 function newGame() {
   resetGame();
   (function askForGameLength() {
-    params.gameLength = prompt("How many won rounds should a game last?");
+    params.gameLength = parseInt(prompt("How many won rounds should a game last?"),10);
     if (checkIfInputIsPositiveInteger(params.gameLength)) {
       displayText("lengthOfGameInfo", ("The game lasts until " + params.gameLength + " round" + (params.gameLength == 1 ? " is" : "s are") + " won.<br>"));
     } else if (params.gameLength == null) {
@@ -68,10 +79,9 @@ function resetGame() {
 
 Array.from(DOM.gameButtons).forEach(function (element) {
   element.addEventListener("click", function () {
-    let playerChoice = this.id == "rock" ? 0 : this.id == "paper" ? 1 : 2;
+    let playerChoice = this.id === "rock" ? 0 : this.id === "paper" ? 1 : 2; /* pomyśleć nad tym, ale jest ok*/
     let computerChoice = randomChoice();
     let roundResult;
-    addTextNoBreak("output" , "Round " + params.roundNumber + ": ");
     let whoWon = function () {
       if (playerChoice === computerChoice) {
         roundResult = "Tie."
@@ -88,6 +98,7 @@ Array.from(DOM.gameButtons).forEach(function (element) {
         return "You won. You played " + choices[playerChoice] + ", the computer played " + choices[computerChoice] + ".";
       }
     }
+    addTextNoBreak("output" , "Round " + params.roundNumber + ": ");
     addText("output", whoWon());
     let roundStats = {
       numberOfRound: params.roundNumber,
@@ -111,7 +122,7 @@ function addText(location,text) {
   DOM[location].innerHTML += text + "<br>";
 }
 
-function addTextNoBreak(location,text) {
+function addTextNoBreak(location,text) { /* jedna moze korzystac z drugiej */
   DOM[location].innerHTML += text;
 }
 
@@ -125,17 +136,20 @@ function updateScoreBoard() {
 }
 
 function computerWon() {
+  console.log ("computerWon:" , params.computerScore , params.gameLength);
   if (params.computerScore == params.gameLength) {
     return true;
   }
-  else {
-    return false;
-  } 
+return false;
 }
 
 /* Czy da sie to zapisac przy pomocy "blabla ? a : b" */
 
 function playerWon() {
+  return params.playerScore === params.gameLength;
+}
+
+/*function playerWon() {
   if (params.playerScore == params.gameLength) {
     return true;
   }
@@ -143,13 +157,22 @@ function playerWon() {
     return false;
   } 
 }
+*/
+
+/*
+if (!a.length) {}
+=
+if (a.length === 0) {}
+*/
 
 function postResult() {
   updateScoreBoard();
+  console.log("postResult" , computerWon(), playerWon());
   if (playerWon() || computerWon() ) {
     for (x = 0; x < 3; x++) {
       DOM.gameButtons[x].disabled = true;
     }
+    
     insertGameStats();
     showModal(".modal");
     displayText("content" , 
@@ -162,7 +185,7 @@ function postResult() {
   }
 }
 
-function showModal(modalClass) {
+function showModal(modalClass) { /*argument jest niewykorzystywany, ale f() dziala :)*/
   DOM.modalOverlay.classList.add('show');
   DOM.modalClass.classList.add('show');
 };
